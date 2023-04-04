@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New User</title>
+</head>
+<body>
+<form th:method="POST"  th:action="@{/item}" th:object="${item}">
+    <label for="itemName">Enter item name: </label>
+    <input type="text" th:field="*{itemName}" id="itemName"/>
+    <div style="color: red" th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}">Name Error</div>
+    <br>
+    <label for="person">Enter owner: </label>
+    <select th:object="${people}" id="person">
+        <option th:each="person : ${people}"
+                th:value="${person.getId()}"
+                th:text="${person.getName()}">
+        </option>
+    </select>
+    <br>
+    <input type="submit" value="Create"/>
+</form>
+</body>
+</html>
