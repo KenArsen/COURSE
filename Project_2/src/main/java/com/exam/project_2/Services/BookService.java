@@ -26,6 +26,14 @@ public class BookService {
         return bookRepository.findAll(PageRequest.of(page, perPage, Sort.by("year"))).getContent();
     }
 
+    public Book findOne(int id){
+        return bookRepository.findById(id).orElse(null);
+    }
+
+    public List<Book> findByNameStartingWith(String word){
+        return bookRepository.findByBookNameStartingWith(word);
+    }
+
     public void save(String name, int year){
         bookRepository.save(new Book(name, year));
     }
